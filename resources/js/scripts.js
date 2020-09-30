@@ -36,20 +36,59 @@ for (let i = 0; i < data.length; ++i) {
   itemsContainer.appendChild(newDiv);
 }
 
-const cart = [ ]
+const cart = [];
 
+const a = 999
+const obj = { a };
+
+console.log(obj)
+console.log("*****************")
 
 function addItem(name, price) {
-  const item = {name: name, price: price, qty: 1}
-  cart.push(item)
-
+  for (let i = 0; i < cart.length; i += 1) {
+    if (cart[i].name === name) {
+      cart[i].qty += 1;
+      return;
+    }
+  }
+  const item = { name: name, price: price, qty: 1 };
+  cart.push(item);
 }
 
 function showItems() {
-  console.log(`You have ${cart.length} items in your cart` )
+  const qty = getQty()
+  console.log(`You have ${getQty()} items in your cart`);
+
+  for (let i = 0; i < cart.length; i += 1) {
+    console.log(`${cart[i].name} ${cart[i].price} * ${cart[i].qty} `);
+  }
+
+const total = getTotal()
+  console.log(`Total in cart: $${getTotal()}`);
 }
 
-addItem('happy', 5.99)
-addItem('sad', 5.99)
+function getQty() {
+  let qty = 0;
+  for (let i = 0; i < cart.length; i += 1) {
+    qty += cart[i].qty;
+  }
+  return qty 
+}
 
-showItems()
+function getTotal() {
+  let total = 0;
+  for (let i = 0; i < cart.length; i += 1) {
+    total += cart[i].price * cart[i].qty;
+  }
+  return total.toFixed(2)
+}
+
+addItem("happy", 5.99);
+addItem("sad", 5.99);
+addItem("angry", 5.99);
+addItem("happy", 5.99);
+addItem("curious", 5.99);
+addItem("happy", 5.99);
+addItem("sad", 5.99);
+
+showItems();
