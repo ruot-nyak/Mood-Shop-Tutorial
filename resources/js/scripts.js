@@ -38,12 +38,7 @@ for (let i = 0; i < data.length; ++i) {
 
 const cart = [];
 
-const a = 999
-const obj = { a };
-
-console.log(obj)
-console.log("*****************")
-
+//-----------------------------------------------------------------------------------------------
 function addItem(name, price) {
   for (let i = 0; i < cart.length; i += 1) {
     if (cart[i].name === name) {
@@ -55,6 +50,7 @@ function addItem(name, price) {
   cart.push(item);
 }
 
+//-----------------------------------------------------------------------------------------------
 function showItems() {
   const qty = getQty()
   console.log(`You have ${getQty()} items in your cart`);
@@ -63,10 +59,13 @@ function showItems() {
     console.log(`${cart[i].name} ${cart[i].price} * ${cart[i].qty} `);
   }
 
+
+  //-----------------------------------------------------------------------------------------------
 const total = getTotal()
   console.log(`Total in cart: $${getTotal()}`);
 }
 
+//-----------------------------------------------------------------------------------------------
 function getQty() {
   let qty = 0;
   for (let i = 0; i < cart.length; i += 1) {
@@ -74,6 +73,8 @@ function getQty() {
   }
   return qty 
 }
+
+//-----------------------------------------------------------------------------------------------
 
 function getTotal() {
   let total = 0;
@@ -83,6 +84,25 @@ function getTotal() {
   return total.toFixed(2)
 }
 
+//-----------------------------------------------------------------------------------------------
+//remove items
+function removeItem(name, qty = 0) {
+  for (let i = 0; i < cart.length; i += 1) {
+    if (cart[i].name === name){
+      if (qty > 0 ) {
+        cart[i].qty -= qty
+      }
+      if (cart[i].qty < 1 || qty === 0) {
+      cart.splice(i, 1)
+    }
+      return
+    }
+  }
+}
+
+//-----------------------------------------------------------------------------------------------
+
+
 addItem("happy", 5.99);
 addItem("sad", 5.99);
 addItem("angry", 5.99);
@@ -90,5 +110,8 @@ addItem("happy", 5.99);
 addItem("curious", 5.99);
 addItem("happy", 5.99);
 addItem("sad", 5.99);
+
+removeItem("happy", 1)
+removeItem("curious")
 
 showItems();
