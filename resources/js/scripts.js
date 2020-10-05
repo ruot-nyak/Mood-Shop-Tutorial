@@ -74,6 +74,15 @@ function showItems() {
      = ${qty} * ${price} </li>`
   }
 
+  const all_items_button = Array.from(document.querySelectorAll("button"));
+
+  all_items_button.forEach((elt) =>
+  elt.addEventListener("click", () => {
+    addItem(elt.getAttribute("id"), elt.getAttribute("data-price"));
+    showItems();
+  })
+);
+
   itemList.innerHTML = itemStr
 
   //-----------------------------------------------------------------------------------------------
